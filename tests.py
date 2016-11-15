@@ -17,6 +17,7 @@ class BubbleSortTest(TestCase):
         a = int_sort_list[0].copy()
         bubble_sort(a)
         self.assertEqual(a, int_sort_list[1])
+
         b = str_sort_list[0].copy()
         bubble_sort(b)
         self.assertEqual(b, str_sort_list[1])
@@ -27,6 +28,7 @@ class SelectionSortTest(TestCase):
         a = int_sort_list[0].copy()
         selection_sort(a)
         self.assertEqual(a, int_sort_list[1])
+
         b = str_sort_list[0].copy()
         selection_sort(b)
         self.assertEqual(b, str_sort_list[1])
@@ -37,6 +39,7 @@ class InsertionSortTest(TestCase):
         a = int_sort_list[0].copy()
         insertion_sort(a)
         self.assertEqual(a, int_sort_list[1])
+
         b = str_sort_list[0].copy()
         insertion_sort(b)
         self.assertEqual(b, str_sort_list[1])
