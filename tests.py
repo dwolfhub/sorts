@@ -17,21 +17,29 @@ class BubbleSortTest(TestCase):
         a = int_sort_list[0].copy()
         bubble_sort(a)
         self.assertEqual(a, int_sort_list[1])
-        b = int_sort_list[0].copy()
+        b = str_sort_list[0].copy()
         bubble_sort(b)
         self.assertEqual(b, str_sort_list[1])
 
 
 class SelectionSortTest(TestCase):
     def test_is_sorted(self):
-        self.assertEqual(selection_sort(int_sort_list[0].copy()), int_sort_list[1])
-        self.assertEqual(selection_sort(str_sort_list[0].copy()), str_sort_list[1])
+        a = int_sort_list[0].copy()
+        selection_sort(a)
+        self.assertEqual(a, int_sort_list[1])
+        b = str_sort_list[0].copy()
+        selection_sort(b)
+        self.assertEqual(b, str_sort_list[1])
 
 
 class InsertionSortTest(TestCase):
     def test_is_sorted(self):
-        self.assertEqual(insertion_sort(int_sort_list[0].copy()), int_sort_list[1])
-        self.assertEqual(insertion_sort(str_sort_list[0].copy()), str_sort_list[1])
+        a = int_sort_list[0].copy()
+        insertion_sort(a)
+        self.assertEqual(a, int_sort_list[1])
+        b = str_sort_list[0].copy()
+        insertion_sort(b)
+        self.assertEqual(b, str_sort_list[1])
 
 
 if __name__ == '__main__':
