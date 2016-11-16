@@ -30,8 +30,31 @@ def insertion_sort(sort_me):
             sort_me.insert(x, z)
 
 
-def shell_sort(sort_me):
-    pass
+def shell_sort(sort_me: list):
+    sm_len = len(sort_me)
+
+    # determine optimal gaps
+    max_gap = sm_len // 2
+    k = 1
+    l = 2
+    gaps = []
+    while k < max_gap:
+        gaps.append(k)
+        k = pow(l, 2) - 1
+        l += 1
+
+    for gap in gaps:
+        for i in range(gap):
+            subset = []
+            j = i
+            while j < sm_len:
+                subset.append(sort_me[j])
+                j += gap
+            insertion_sort(subset)
+            while i < sm_len:
+                sort_me.pop(i)
+                sort_me.insert(i, subset.pop(0))
+                i += gap
 
 
 def merge_sort(sort_me):
