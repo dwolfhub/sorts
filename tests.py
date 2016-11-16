@@ -14,13 +14,13 @@ int_sort_list = [
                     467, 536, 635, 674, 678, 939, 3456, 20093, 30039
                 ]
 
-str_sort_list = ['apple juice', 'butter', 'carrot', 'banana', 'apple'], [
-    'apple',
-    'apple juice',
-    'banana',
-    'butter',
-    'carrot',
-]
+str_sort_list = [
+                    'apple juice', 'butter', 'carrot', 'banana', 'apple',
+                    'apple',
+                ], [
+                    'apple', 'apple', 'apple juice', 'banana', 'butter',
+                    'carrot',
+                ]
 
 
 class BubbleSortTest(TestCase):
@@ -61,6 +61,9 @@ class ShellSortTest(TestCase):
         a = int_sort_list[0].copy()
         shell_sort(a)
         self.assertEqual(a, int_sort_list[1])
+        b = str_sort_list[0].copy()
+        shell_sort(b)
+        self.assertEqual(b, str_sort_list[1])
 
 
 if __name__ == '__main__':

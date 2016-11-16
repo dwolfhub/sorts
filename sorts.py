@@ -8,11 +8,11 @@ def bubble_sort(sort_me):
 def selection_sort(sort_me):
     for x in range(len(sort_me), 1, -1):
         i = 0
-        h = sort_me[i]
+        high = sort_me[i]
         for y in range(1, x):
-            if sort_me[y] > h:
+            if sort_me[y] > high:
                 i = y
-                h = sort_me[i]
+                high = sort_me[i]
 
         sort_me[y], sort_me[i] = sort_me[i], sort_me[y]
 
@@ -31,30 +31,34 @@ def insertion_sort(sort_me):
 
 
 def shell_sort(sort_me: list):
-    sm_len = len(sort_me)
+    list_len = len(sort_me)
 
-    # determine optimal gaps
-    max_gap = sm_len // 2
-    k = 1
-    l = 2
+    # determine optimal gaps (uses 2 ^ k - 1 formula)
+    max_gap = list_len // 2
+    gap = 1
+    k = 2
     gaps = []
-    while k < max_gap:
-        gaps.append(k)
-        k = pow(l, 2) - 1
-        l += 1
+    while gap < max_gap:
+        gaps.append(gap)
+        gap = pow(2, k) - 1
+        k += 1
 
-    for gap in gaps:
-        for i in range(gap):
-            subset = []
-            j = i
-            while j < sm_len:
-                subset.append(sort_me[j])
-                j += gap
-            insertion_sort(subset)
-            while i < sm_len:
-                sort_me.pop(i)
-                sort_me.insert(i, subset.pop(0))
-                i += gap
+    for gap in reversed(gaps):
+        # using each gap..
+        for start_of_subset in range(gap):
+            # insertion sort each subset
+            current_sort_item_index = start_of_subset + gap
+            while current_sort_item_index < list_len:
+                current_sort_item_value = sort_me[current_sort_item_index]
+                working_index = start_of_subset
+                while working_index < current_sort_item_index:
+                    if current_sort_item_value < sort_me[working_index]:
+                        current_sort_item_value, sort_me[working_index] = \
+                            sort_me[working_index], current_sort_item_value
+                    working_index += gap
+
+                sort_me[working_index] = current_sort_item_value
+                current_sort_item_index += gap
 
 
 def merge_sort(sort_me):
