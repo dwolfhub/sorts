@@ -1,6 +1,7 @@
 from unittest import TestCase, main as run_tests
 
-from sorts import bubble_sort, selection_sort, insertion_sort, shell_sort
+from sorts import bubble_sort, selection_sort, insertion_sort, shell_sort, \
+    merge_sort, quick_sort
 
 int_sort_list = [
                     55, 54, 3, 2, 100, 33, 99, 939, 20093, 30039, 34, 7, 435, 3,
@@ -64,6 +65,25 @@ class ShellSortTest(TestCase):
         b = str_sort_list[0].copy()
         shell_sort(b)
         self.assertEqual(b, str_sort_list[1])
+
+
+class MergeSortTest(TestCase):
+    def test_is_sorted(self):
+        a = int_sort_list[0].copy()
+        merge_sort(a)
+
+        self.assertEqual(a, int_sort_list[1])
+        b = str_sort_list[0].copy()
+        merge_sort(b)
+        self.assertEqual(b, str_sort_list[1])
+
+
+class QuickSortTest(TestCase):
+    def test_is_sorted(self):
+        a = int_sort_list[0].copy()
+        self.assertEqual(quick_sort(a), int_sort_list[1])
+        b = str_sort_list[0].copy()
+        self.assertEqual(quick_sort(b), str_sort_list[1])
 
 
 if __name__ == '__main__':

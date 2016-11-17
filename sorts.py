@@ -62,8 +62,66 @@ def shell_sort(sort_me: list):
 
 
 def merge_sort(sort_me):
-    pass
+    list_len = len(sort_me)
+    if list_len > 1:
+        split_index = list_len // 2
+
+        left = sort_me[:split_index]
+        right = sort_me[split_index:]
+
+        # merge each side individually before merging them into each other
+        merge_sort(left)
+        merge_sort(right)
+
+        # merge left and right
+        li = 0
+        ri = 0
+        smi = 0
+        left_len = len(left)
+        right_len = len(right)
+
+        while li < left_len and ri < right_len:
+            if left[li] < right[ri]:
+                sort_me[smi] = left[li]
+                li += 1
+            else:
+                sort_me[smi] = right[ri]
+                ri += 1
+            smi += 1
+
+        # merge remaining items from left
+        while li < left_len:
+            sort_me[smi] = left[li]
+            li += 1
+            smi += 1
+
+        # merge remaining items from right
+        while ri < right_len:
+            sort_me[smi] = right[ri]
+            ri += 1
+            smi += 1
 
 
 def quick_sort(sort_me):
-    pass
+    list_len = len(sort_me)
+    if list_len > 1:
+        piv_i = 0
+        piv_val = sort_me[piv_i]
+
+        left_i = 1
+        right_i = list_len - 1
+
+        while left_i < right_i:
+            while sort_me[left_i] <= piv_val and left_i < right_i:
+                left_i += 1
+            while sort_me[right_i] >= piv_val and right_i > left_i:
+                right_i -= 1
+
+            if sort_me[left_i] > piv_val or sort_me[right_i] < piv_val:
+                sort_me[left_i], sort_me[right_i] = \
+                    sort_me[right_i], sort_me[left_i]
+
+        return quick_sort(sort_me[1:right_i]) + [piv_val] + quick_sort(
+            sort_me[right_i:])
+
+    return sort_me
