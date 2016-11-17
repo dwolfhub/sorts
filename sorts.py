@@ -102,26 +102,36 @@ def merge_sort(sort_me):
             smi += 1
 
 
-def quick_sort(sort_me):
-    list_len = len(sort_me)
+def quick_sort(sort_me, start=0, end=None):
+    if not end:
+        end = len(sort_me) - 1
+
+    list_len = end - start + 1
+
     if list_len > 1:
-        piv_i = 0
-        piv_val = sort_me[piv_i]
+        piv = sort_me[start]
+        l = start + 1
+        r = end
+        done = False
 
-        left_i = 1
-        right_i = list_len - 1
+        while not done:
+            try:
+                while sort_me[l] <= piv and l <= r:
+                    l += 1
+            except IndexError:
+                pass
 
-        while left_i < right_i:
-            while sort_me[left_i] <= piv_val and left_i < right_i:
-                left_i += 1
-            while sort_me[right_i] >= piv_val and right_i > left_i:
-                right_i -= 1
+            while sort_me[r] >= piv and r >= l:
+                r -= 1
 
-            if sort_me[left_i] > piv_val or sort_me[right_i] < piv_val:
-                sort_me[left_i], sort_me[right_i] = \
-                    sort_me[right_i], sort_me[left_i]
+            if l < r:
+                sort_me[l], sort_me[r] = sort_me[r], sort_me[l]
+            else:
+                done = True
 
-        return quick_sort(sort_me[1:right_i]) + [piv_val] + quick_sort(
-            sort_me[right_i:])
+        sort_me.insert(r, sort_me.pop(start))
 
-    return sort_me
+        if l < end:
+            quick_sort(sort_me, l, end)
+        if r - 1 > start:
+            quick_sort(sort_me, start, r - 1)

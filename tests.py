@@ -81,9 +81,11 @@ class MergeSortTest(TestCase):
 class QuickSortTest(TestCase):
     def test_is_sorted(self):
         a = int_sort_list[0].copy()
-        self.assertEqual(quick_sort(a), int_sort_list[1])
+        quick_sort(a)
+        self.assertEqual(a, int_sort_list[1])
         b = str_sort_list[0].copy()
-        self.assertEqual(quick_sort(b), str_sort_list[1])
+        quick_sort(b)
+        self.assertEqual(b, str_sort_list[1])
 
 
 if __name__ == '__main__':
